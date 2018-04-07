@@ -1,7 +1,7 @@
 /*
  * Grammar to parse the graphviz dot/xdot language.
  *
- * This file is based on https://github.com/siefkenj/dotgraph
+ * This file is based on https://github.com/anvaka/dotparser
  */
 
 start
@@ -9,27 +9,28 @@ start
 
 graph
   = _ strict:"strict"i? _ type:("graph"i / "digraph"i) _ id:ID? _ "{" children:stmt_list ? _ "}" _ {
-      if (children === null) children = [];
-      var ret = {type:type.toLowerCase(), children:children};
-      if (strict) { ret.strict = true }
-      if (id) { ret.id = id }
-      return ret;
+      return {
+        id: id || undefined,
+        // capitalize Graph and Digraph
+        type: type.charAt(0).toUpperCase() + type.slice(1),
+        children: children || [],
+        strict: (strict) ? true : undefined
+      }
     }
 
 stmt_list
-  = _ s:stmt _ ";"? e:(_ s:stmt _";"?  { return s; })* { return [s].concat(e); }
+  = _ e:(_ s:stmt _";"?  { return s; })* { return [].concat(e); }
 
 stmt
   // an assignment as a statement e.g. 'label=4' is shorthand for 'graph [label=4]',
   // so let's just pretend that's what we wrote
   = left:ID _ '=' _ right:ID {
     return {
-      type:'attr_stmt',
-      target:'graph',
-      attr_list:[{
-        type:'attr',
-        id:left,
-        eq:right
+      type: 'AttributeStatement',
+      children:[{
+        type: 'Attribute',
+        name: left,
+        value: right
       }]
     };
   }
@@ -42,9 +43,9 @@ stmt
 attr_stmt
   = target:('graph'i/'node'i/'edge'i) attr:attr_list {
      return {
-       type:'attr_stmt',
-       target:target,
-       attr_list:attr
+       type: 'AttributeStatement',
+       target: target,
+       children: attr
      };
   }
 
@@ -54,11 +55,11 @@ attr_list
   }
 
 a_list
-  = _ id:ID eq:(_ '=' _ id:ID {return id})? _ ','? rest:a_list? {
+  = _ ida:ID eq:(_ '=' _ idb:ID {return idb})? _ ','? rest:a_list? {
         return [{
-          type:'attr',
-          id:id,
-          eq:eq || null
+          type: 'Attribute',
+          name: ida,
+          value: eq || undefined
         }].concat(rest || []);
     }
 
@@ -67,81 +68,88 @@ edge_stmt
        var edge_list = [id];
        edge_list = edge_list.concat(rhs.map(function(v){return v.id}));
 
+       if (attr) {
+         edge_list = edge_list.concat(attr);
+       }
+
        return {
-         type:'edge_stmt',
-         edge_list:edge_list,
-         attr_list:attr || []
+         type: 'EdgeStatement',
+         children: edge_list
        };
     }
 
 edgeRHS
   = _ edgeop:('->'/'--') _ id:(subgraph / node_id) _ rest:edgeRHS? {
       return [{
-        type:'edgeRHS',
-        edgeop:edgeop,
-        id:id
+        type: 'EdgeRightHandSide',
+        edgeop: edgeop,
+        id: id
       }].concat(rest || []);
   }
 
 node_stmt
   = id:node_id attr:attr_list? {
     return {
-      type:'node_stmt',
-      node_id:id,
-      attr_list:attr || []
+      type: 'NodeStatement',
+      id: id,
+      children: attr || []
     };
   }
 
 node_id
   = id:ID port:port? {
       return port ? {
-        type:'node_id', id:id, port:port
+        type: 'NodeId',
+        id: id,
+        port: port
       } : {
-        type:'node_id', id:id
+        type: 'NodeId',
+        id: id
       };
   }
 
 port 'port'
   = ':' id:ID pt:(':' pt:compass_pt {return pt})? {
     return {
-      type:'port',
-      id:id,
-      compass_pt:pt || null
+      type: 'Port',
+      id: id,
+      compass: pt || undefined
     };
   }
   //I think this rule is never used...
   / ':' pt:compass_pt {
     return {
-      type:'port',
-      compass_pt:pt || null
+      type: 'Port',
+      compass: pt || undefined
     }
   }
 
 subgraph
   = g:('subgraph'i _ id:ID? _ {
         return id ? {
-          type:'subgraph', id:id
+          type: 'Subgraph',
+          id: id
         } : {
-          type:'subgraph'
+          type: 'Subgraph'
         }
       })? '{' s:stmt_list '}' {
         g = g || {
-          type:'subgraph'
+          type: 'Subgraph'
         };
         g.children = s || [];
         return g;
       }
   / 'subgraph'i _ id:ID {
       return {
-        type:'subgraph',
-        id:id,
-        children:[]
+        type: 'Subgraph',
+        id: id,
+        children: []
       };
     }
   / _ '{' _ s:stmt_list? _ '}' {
       return {
-      type: 'subgraph',
-      children: s
+        type: 'Subgraph',
+        children: s
       }
     }
 
@@ -181,9 +189,9 @@ NUMBER "NUMBER"
 HTML_STRING
   = v:html_raw_string {
       return {
-        type:'id',
-        value:v.slice(1,v.length-1),
-        html:true
+        type: 'Id',
+        value: v.slice(1, v.length - 1),
+        html: true
       };
     }
 

@@ -2,9 +2,13 @@
   "name": "redot-parse",
   "version": "0.0.0",
   "description": "Graphviz dot parser for redot",
-  "main": "parser.js",
+  "main": "redot-parse.js",
+  "files": [
+    "dot.js",
+    "redot-parse.js"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublish": "pegjs dot.pegjs"
   },
   "repository": {
     "type": "git",
@@ -25,7 +29,6 @@
     "url": "https://github.com/redotjs/redot/issues"
   },
   "homepage": "https://github.com/redotjs/redot#readme",
-  "dependencies": {},
   "devDependencies": {
     "pegjs": "^0.10.0"
   }
