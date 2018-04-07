@@ -1,0 +1,38 @@
+{
+  "name": "redot",
+  "version": "0.0.0",
+  "description": "Graphviz dot processor powered by plugins",
+  "main": "redot.js",
+  "files": [
+    "redot.js"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/redotjs/redot.git"
+  },
+  "keywords": [
+    "graphviz",
+    "dot",
+    "astract",
+    "syntax",
+    "tree",
+    "ast",
+    "parse",
+    "stringify",
+    "process"
+  ],
+  "author": "Christian Murphy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/redotjs/redot/issues"
+  },
+  "homepage": "https://github.com/redotjs/redot#readme",
+  "dependencies": {
+    "redot-parse": "^0.0.0",
+    "redot-stringify": "^0.0.0",
+    "unified": "^6.1.6"
+  }
+}
