@@ -1,0 +1,31 @@
+{
+  "name": "redot-stringify",
+  "version": "0.0.0",
+  "description": "Graphviz dot compiler for redot",
+  "main": "redot-stringify.js",
+  "files": [
+    "redot-stringify.js"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/redotjs/redot.git"
+  },
+  "keywords": [
+    "graphviz",
+    "dot",
+    "abstract",
+    "syntax",
+    "tree",
+    "ast",
+    "stringify"
+  ],
+  "author": "Christian Murphy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/redotjs/redot/issues"
+  },
+  "homepage": "https://github.com/redotjs/redot#readme"
+}
