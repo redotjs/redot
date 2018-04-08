@@ -1,5 +1,6 @@
 # redot-parse
 
+[![Build Status](https://travis-ci.org/redotjs/redot.svg?branch=master)](https://travis-ci.org/redotjs/redot)
 [![Chat](https://img.shields.io/gitter/room/redotjs/Lobby.svg)](https://gitter.im/redotjs/Lobby)
 
 [Parser](https://github.com/unifiedjs/unified#processorparser) for [**unified**](https://github.com/unifiedjs/unified). Parses graphviz to an

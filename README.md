@@ -1,5 +1,6 @@
 # Redot
 
+[![Build Status](https://travis-ci.org/redotjs/redot.svg?branch=master)](https://travis-ci.org/redotjs/redot)
 [![Chat](https://img.shields.io/gitter/room/redotjs/Lobby.svg)](https://gitter.im/redotjs/Lobby)
 
 **redot** is an ecosystem of plugins for processing graphviz dot files.
