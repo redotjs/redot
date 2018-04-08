@@ -4,12 +4,12 @@
 
 **redot** is an ecosystem of plugins for processing graphviz dot files.
 It’s not another graphviz compiler. It can generate
-and reformat graphviz too. .
+and reformat graphviz too.
 
 It’s built on [unified](https://github.com/unifiedjs/unified), make sure to read it and its [website](https://unifiedjs.github.io) too.
 
 * [`redot`](https://github.com/redotjs/redot/tree/master/packages/redot) — Programmatic interface
-* [`redot-cli`][https://github.com/redotjs/redot/tree/master/packages/redot-lcli] — Command-line interface
+* [`redot-cli`](https://github.com/redotjs/redot/tree/master/packages/redot-cli) — Command-line interface
 
 ## Contribute
 

@@ -2,6 +2,10 @@
 
 [![Chat](https://img.shields.io/gitter/room/redotjs/Lobby.svg)](https://gitter.im/redotjs/Lobby)
 
+[Parser](https://github.com/unifiedjs/unified#processorparser) for [**unified**](https://github.com/unifiedjs/unified). Parses graphviz to an
+[**dotast**](https://github.com/redotjs/dotast) syntax tree. Used in the [**redot**
+processor](https://github.com/redotjs/redot).
+
 ## Installation
 
 [npm](https://docs.npmjs.com/cli/install)
