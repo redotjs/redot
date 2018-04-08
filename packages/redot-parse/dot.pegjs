@@ -7,7 +7,7 @@
 start
   = graph:graph+ {
     return {
-      type: "Root",
+      type: 'root',
       children: graph,
       data: {},
       position: location()
@@ -15,11 +15,11 @@ start
   }
 
 graph
-  = _ strict:"strict"i? _ type:("graph"i / "digraph"i) _ id:ID? _ "{" children:stmt_list ? _ "}" _ {
+  = _ strict:'strict'i? _ type:('graph'i / 'digraph'i) _ id:ID? _ '{' children:stmt_list ? _ '}' _ {
       return {
         id: id || undefined,
         // capitalize Graph and Digraph
-        type: type.charAt(0).toUpperCase() + type.slice(1),
+        type: type.toLowerCase(),
         children: children || [],
         strict: (strict) ? true : undefined,
         data: {},
@@ -28,16 +28,16 @@ graph
     }
 
 stmt_list
-  = _ e:(_ s:stmt _";"?  { return s; })* { return [].concat(e); }
+  = _ e:(_ s:stmt _';'?  { return s; })* { return [].concat(e); }
 
 stmt
   // an assignment as a statement e.g. 'label=4' is shorthand for 'graph [label=4]',
   // so let's just pretend that's what we wrote
   = left:ID _ '=' _ right:ID {
     return {
-      type: 'AttributeStatement',
+      type: 'attributeStatement',
       children:[{
-        type: 'Attribute',
+        type: 'attribute',
         name: left,
         value: right,
         data: {},
@@ -54,7 +54,7 @@ stmt
 attr_stmt
   = target:('graph'i/'node'i/'edge'i) attr:attr_list {
      return {
-       type: 'AttributeStatement',
+       type: 'attributeStatement',
        target: target,
        children: attr,
        data: {},
@@ -70,7 +70,7 @@ attr_list
 a_list
   = _ ida:ID eq:(_ '=' _ idb:ID {return idb})? _ ','? rest:a_list? {
         return [{
-          type: 'Attribute',
+          type: 'attribute',
           name: ida,
           value: eq || undefined,
           data: {},
@@ -88,7 +88,7 @@ edge_stmt
        }
 
        return {
-         type: 'EdgeStatement',
+         type: 'edgeStatement',
          children: edge_list,
          data: {},
          position: location()
@@ -98,7 +98,7 @@ edge_stmt
 edgeRHS
   = _ edgeop:('->'/'--') _ id:(subgraph / node_id) _ rest:edgeRHS? {
       return [{
-        type: 'EdgeRightHandSide',
+        type: 'edgeRightHandSide',
         edgeop: edgeop,
         id: id,
         data: {},
@@ -109,7 +109,7 @@ edgeRHS
 node_stmt
   = id:node_id attr:attr_list? {
     return {
-      type: 'NodeStatement',
+      type: 'nodeStatement',
       id: id,
       children: attr || [],
       data: {},
@@ -120,13 +120,13 @@ node_stmt
 node_id
   = id:ID port:port? {
       return port ? {
-        type: 'NodeId',
+        type: 'nodeId',
         id: id,
         port: port,
         data: {},
         position: location()
       } : {
-        type: 'NodeId',
+        type: 'nodeId',
         id: id,
         data: {},
         position: location()
@@ -136,7 +136,7 @@ node_id
 port 'port'
   = ':' id:ID pt:(':' pt:compass_pt {return pt})? {
     return {
-      type: 'Port',
+      type: 'port',
       id: id,
       compass: pt || undefined,
       data: {},
@@ -146,7 +146,7 @@ port 'port'
   //I think this rule is never used...
   / ':' pt:compass_pt {
     return {
-      type: 'Port',
+      type: 'port',
       compass: pt || undefined,
       data: {},
       position: location()
@@ -156,18 +156,18 @@ port 'port'
 subgraph
   = g:('subgraph'i _ id:ID? _ {
         return id ? {
-          type: 'Subgraph',
+          type: 'subgraph',
           id: id,
           data: {},
           position: location()
         } : {
-          type: 'Subgraph',
+          type: 'subgraph',
           data: {},
           position: location()
         }
       })? '{' s:stmt_list '}' {
         g = g || {
-          type: 'Subgraph',
+          type: 'subgraph',
           data: {},
           position: location()
         };
@@ -176,7 +176,7 @@ subgraph
       }
   / 'subgraph'i _ id:ID {
       return {
-        type: 'Subgraph',
+        type: 'subgraph',
         id: id,
         children: [],
         data: {},
@@ -185,7 +185,7 @@ subgraph
     }
   / _ '{' _ s:stmt_list? _ '}' {
       return {
-        type: 'Subgraph',
+        type: 'subgraph',
         children: s,
         data: {},
         position: location()
@@ -208,15 +208,15 @@ STRING "UNICODE_STRING"
 
 StringStart
   = UnicodeLetter
-  / "$"
-  / "_"
+  / '$'
+  / '_'
 
 StringPart
   = StringStart
   / UnicodeDigit
 
 NUMBER "NUMBER"
-  = n:("-"? ("." [0-9]+ / [0-9]+("." [0-9]*)?)) {
+  = n:('-'? ('.' [0-9]+ / [0-9]+("." [0-9]*)?)) {
        return parseFloat(text());
     }
 
@@ -228,7 +228,7 @@ NUMBER "NUMBER"
 HTML_STRING
   = v:html_raw_string {
       return {
-        type: 'Id',
+        type: 'id',
         value: v.slice(1, v.length - 1),
         html: true,
         data: {},
@@ -256,28 +256,28 @@ QuoteEscape
   = v:("\\".) { return v[1] === '"' ? '"' : v[0] + v[1]; }
 
 LineContinuation
-  = "\\" LineTerminatorSequence { return ""; }
+  = "\\" LineTerminatorSequence { return ''; }
 
 LineTerminator
   = [\n\r\u2028\u2029]
 
 LineTerminatorSequence "end of line"
-  = "\n"
-  / "\r\n"
-  / "\r"
-  / "\u2028"
-  / "\u2029"
+  = '\n'
+  / '\r\n'
+  / '\r'
+  / '\u2028'
+  / '\u2029'
 
 SourceCharacter
   = .
 
 chars
-  = chars:char+ { return chars.join(""); }
+  = chars:char+ { return chars.join(''); }
 
 char
   = [^"\\\0-\x1F\x7f]
   / '\\"' { return '"'; }
-  / '\\' NEWLINE { return ""; }
+  / '\\' NEWLINE { return ''; }
   / '\\' { return '\\'; }
 
 
@@ -285,13 +285,13 @@ COMMENT "COMMENT"
  = (BLOCK_COMMENT / C_COMMENT / MACRO_COMMENT)
 
 BLOCK_COMMENT "BLOCK_COMMENT"
-  = "/*" v:(!"*/" v:. {return v;})* "*/" { return v.join('') }
+  = '/*' v:(!'*/' v:. {return v;})* '*/' { return v.join('') }
 
 C_COMMENT "C_COMMENT"
-  = "//" v:(![\n] v:. { return v; })* [\n]? { return v.join(''); }
+  = '//' v:(![\n] v:. { return v; })* [\n]? { return v.join(''); }
 
 MACRO_COMMENT "MACRO_COMMENT"
-  = "#" v:(![\n] v:. { return v; })* [\n]? { return v.join(''); }
+  = '#' v:(![\n] v:. { return v; })* [\n]? { return v.join(''); }
 
 
 _ "WHITESPACE"
