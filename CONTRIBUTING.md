@@ -34,7 +34,7 @@ and help others.
 * [**syntax-tree**](https://gitter.im/syntax-tree/Lobby)
   — Topics relating to [**syntax-tree**](https://github.com/syntax-tree) and [**unist**](https://github.com/syntax-tree/unist)
 * [**redot**](https://gitter.im/redotjs/Lobby)
-  — Topics relating to the [**redot**][https://github.com/redotjs/redot] ecosystem, graphivz,
+  — Topics relating to the [**redot**](https://github.com/redotjs/redot) ecosystem, graphivz,
   and [**dotast**](https://github.com/redotjs/dotast)
 
 ## Contributions

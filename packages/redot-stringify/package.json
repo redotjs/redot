@@ -3,9 +3,7 @@
   "version": "0.2.0",
   "description": "Graphviz dot compiler for redot",
   "main": "redot-stringify.js",
-  "files": [
-    "redot-stringify.js"
-  ],
+  "files": ["redot-stringify.js"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

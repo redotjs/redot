@@ -3,10 +3,7 @@
   "version": "0.2.0",
   "description": "Graphviz dot parser for redot",
   "main": "redot-parse.js",
-  "files": [
-    "dot.js",
-    "redot-parse.js"
-  ],
+  "files": ["dot.js", "redot-parse.js"],
   "scripts": {
     "prepublish": "pegjs dot.pegjs"
   },
@@ -14,15 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/redotjs/redot.git"
   },
-  "keywords": [
-    "graphviz",
-    "dot",
-    "abstract",
-    "syntax",
-    "tree",
-    "ast",
-    "parse"
-  ],
+  "keywords": ["graphviz", "dot", "abstract", "syntax", "tree", "ast", "parse"],
   "author": "Christian Murphy",
   "license": "MIT",
   "bugs": {
