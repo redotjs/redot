@@ -78,7 +78,7 @@ a_list
 edge_stmt
   = id:(subgraph / node_id) rhs:edgeRHS attr:attr_list? {
        var edge_list = [id];
-       edge_list = edge_list.concat(rhs.map(function(v){return v.id}));
+       edge_list = edge_list.concat(rhs);
 
        if (attr) {
          edge_list = edge_list.concat(attr);
@@ -97,7 +97,7 @@ edgeRHS
       return [{
         type: 'edgeRightHandSide',
         edgeop: edgeop,
-        id: id,
+        children: [id],
         data: {},
         position: location()
       }].concat(rest || []);
@@ -125,7 +125,7 @@ node_id
       return port ? {
         type: 'nodeId',
         id: id,
-        port: port,
+        children: [port],
         data: {},
         position: location()
       } : {
