@@ -5,7 +5,14 @@
  */
 
 start
-  = graph+
+  = graph:graph+ {
+    return {
+      type: "Root",
+      children: graph,
+      data: {},
+      position: location()
+    }
+  }
 
 graph
   = _ strict:"strict"i? _ type:("graph"i / "digraph"i) _ id:ID? _ "{" children:stmt_list ? _ "}" _ {
@@ -15,6 +22,7 @@ graph
         type: type.charAt(0).toUpperCase() + type.slice(1),
         children: children || [],
         strict: (strict) ? true : undefined,
+        data: {},
         position: location()
       }
     }
@@ -32,6 +40,7 @@ stmt
         type: 'Attribute',
         name: left,
         value: right,
+        data: {},
         position: location()
       }]
     };
@@ -48,6 +57,7 @@ attr_stmt
        type: 'AttributeStatement',
        target: target,
        children: attr,
+       data: {},
        position: location()
      };
   }
@@ -63,6 +73,7 @@ a_list
           type: 'Attribute',
           name: ida,
           value: eq || undefined,
+          data: {},
           position: location()
         }].concat(rest || []);
     }
@@ -79,6 +90,7 @@ edge_stmt
        return {
          type: 'EdgeStatement',
          children: edge_list,
+         data: {},
          position: location()
        };
     }
@@ -89,6 +101,7 @@ edgeRHS
         type: 'EdgeRightHandSide',
         edgeop: edgeop,
         id: id,
+        data: {},
         position: location()
       }].concat(rest || []);
   }
@@ -99,6 +112,7 @@ node_stmt
       type: 'NodeStatement',
       id: id,
       children: attr || [],
+      data: {},
       position: location()
     };
   }
@@ -109,10 +123,12 @@ node_id
         type: 'NodeId',
         id: id,
         port: port,
+        data: {},
         position: location()
       } : {
         type: 'NodeId',
         id: id,
+        data: {},
         position: location()
       };
   }
@@ -123,6 +139,7 @@ port 'port'
       type: 'Port',
       id: id,
       compass: pt || undefined,
+      data: {},
       position: location()
     };
   }
@@ -131,6 +148,7 @@ port 'port'
     return {
       type: 'Port',
       compass: pt || undefined,
+      data: {},
       position: location()
     }
   }
@@ -140,14 +158,17 @@ subgraph
         return id ? {
           type: 'Subgraph',
           id: id,
+          data: {},
           position: location()
         } : {
           type: 'Subgraph',
+          data: {},
           position: location()
         }
       })? '{' s:stmt_list '}' {
         g = g || {
           type: 'Subgraph',
+          data: {},
           position: location()
         };
         g.children = s || [];
@@ -158,6 +179,7 @@ subgraph
         type: 'Subgraph',
         id: id,
         children: [],
+        data: {},
         position: location()
       };
     }
@@ -165,6 +187,7 @@ subgraph
       return {
         type: 'Subgraph',
         children: s,
+        data: {},
         position: location()
       }
     }
@@ -208,6 +231,7 @@ HTML_STRING
         type: 'Id',
         value: v.slice(1, v.length - 1),
         html: true,
+        data: {},
         position: location()
       };
     }

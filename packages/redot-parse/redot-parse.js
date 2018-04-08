@@ -5,12 +5,9 @@ var parser = require("./dot.js");
 
 function parse(doc, file) {
   try {
-    return {
-      type: "Root",
-      children: parser.parse(file.contents || doc)
-    };
+    return parser.parse(file.contents || doc);
   } catch (err) {
-    file.fail(err);
+    file.fail(err.message, err.location, "redot-parse");
   }
 }
 
