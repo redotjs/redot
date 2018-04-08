@@ -1,10 +1,18 @@
 "use strict";
 
+function utilQuotesAndEscaping(text) {
+  if (text.indexOf(" ") > 0) {
+    return '"' + text.replace('"', '\\"') + '"';
+  }
+
+  return text;
+}
+
 function utilProcessChildType(node, func, sep) {
   if (!node || !node.children) {
     return "";
   }
-  if (!sep) {
+  if (typeof sep === "undefined") {
     // TODO make default seperator configurable
     sep = "\n";
   }
@@ -17,7 +25,7 @@ function utilProcessChildType(node, func, sep) {
 }
 
 function attribute(node) {
-  return node.name + "=" + node.value;
+  return node.name + "=" + utilQuotesAndEscaping(node.value);
 }
 
 function attributeStatement(node) {
@@ -31,7 +39,7 @@ function nodeStatement(node) {
   return (
     utilProcessChildType(node, nodeId) +
     "[" +
-    utilProcessChildType(node, attribute) +
+    utilProcessChildType(node, attribute, ",") +
     "]"
   );
 }
@@ -46,16 +54,7 @@ function port(node) {
 }
 
 function nodeId(node) {
-  var result = "";
-
-  if (node.id.indexOf(" ") > 0) {
-    result += '"' + node.id + '"';
-  } else {
-    result += node.id;
-  }
-
-  result += utilProcessChildType(node, port);
-  return result;
+  return utilQuotesAndEscaping(node.id) + utilProcessChildType(node, port);
 }
 
 function edgeRightHandSide(node) {
@@ -66,7 +65,7 @@ function edgeStatement(node) {
   return (
     utilProcessChildType(node, subgraph) +
     utilProcessChildType(node, nodeId) +
-    utilProcessChildType(node, edgeRightHandSide)
+    utilProcessChildType(node, edgeRightHandSide, "")
   );
 }
 
@@ -80,7 +79,7 @@ function graph(node) {
 
   if (node.id) {
     // TODO make indent configurable
-    result += " " + nodeId(node);
+    result += " " + utilQuotesAndEscaping(node.id);
   }
 
   result += " {\n";
