@@ -14,7 +14,8 @@ graph
         // capitalize Graph and Digraph
         type: type.charAt(0).toUpperCase() + type.slice(1),
         children: children || [],
-        strict: (strict) ? true : undefined
+        strict: (strict) ? true : undefined,
+        position: location()
       }
     }
 
@@ -30,7 +31,8 @@ stmt
       children:[{
         type: 'Attribute',
         name: left,
-        value: right
+        value: right,
+        position: location()
       }]
     };
   }
@@ -45,7 +47,8 @@ attr_stmt
      return {
        type: 'AttributeStatement',
        target: target,
-       children: attr
+       children: attr,
+       position: location()
      };
   }
 
@@ -59,7 +62,8 @@ a_list
         return [{
           type: 'Attribute',
           name: ida,
-          value: eq || undefined
+          value: eq || undefined,
+          position: location()
         }].concat(rest || []);
     }
 
@@ -74,7 +78,8 @@ edge_stmt
 
        return {
          type: 'EdgeStatement',
-         children: edge_list
+         children: edge_list,
+         position: location()
        };
     }
 
@@ -83,7 +88,8 @@ edgeRHS
       return [{
         type: 'EdgeRightHandSide',
         edgeop: edgeop,
-        id: id
+        id: id,
+        position: location()
       }].concat(rest || []);
   }
 
@@ -92,7 +98,8 @@ node_stmt
     return {
       type: 'NodeStatement',
       id: id,
-      children: attr || []
+      children: attr || [],
+      position: location()
     };
   }
 
@@ -101,10 +108,12 @@ node_id
       return port ? {
         type: 'NodeId',
         id: id,
-        port: port
+        port: port,
+        position: location()
       } : {
         type: 'NodeId',
-        id: id
+        id: id,
+        position: location()
       };
   }
 
@@ -113,14 +122,16 @@ port 'port'
     return {
       type: 'Port',
       id: id,
-      compass: pt || undefined
+      compass: pt || undefined,
+      position: location()
     };
   }
   //I think this rule is never used...
   / ':' pt:compass_pt {
     return {
       type: 'Port',
-      compass: pt || undefined
+      compass: pt || undefined,
+      position: location()
     }
   }
 
@@ -128,13 +139,16 @@ subgraph
   = g:('subgraph'i _ id:ID? _ {
         return id ? {
           type: 'Subgraph',
-          id: id
+          id: id,
+          position: location()
         } : {
-          type: 'Subgraph'
+          type: 'Subgraph',
+          position: location()
         }
       })? '{' s:stmt_list '}' {
         g = g || {
-          type: 'Subgraph'
+          type: 'Subgraph',
+          position: location()
         };
         g.children = s || [];
         return g;
@@ -143,13 +157,15 @@ subgraph
       return {
         type: 'Subgraph',
         id: id,
-        children: []
+        children: [],
+        position: location()
       };
     }
   / _ '{' _ s:stmt_list? _ '}' {
       return {
         type: 'Subgraph',
-        children: s
+        children: s,
+        position: location()
       }
     }
 
@@ -191,7 +207,8 @@ HTML_STRING
       return {
         type: 'Id',
         value: v.slice(1, v.length - 1),
-        html: true
+        html: true,
+        position: location()
       };
     }
 
