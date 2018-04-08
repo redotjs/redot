@@ -35,14 +35,11 @@ stmt
   // so let's just pretend that's what we wrote
   = left:ID _ '=' _ right:ID {
     return {
-      type: 'attributeStatement',
-      children:[{
-        type: 'attribute',
-        name: left,
-        value: right,
-        data: {},
-        position: location()
-      }]
+      type: 'attribute',
+      name: left,
+      value: right,
+      data: {},
+      position: location()
     };
   }
   / attr_stmt
@@ -108,10 +105,16 @@ edgeRHS
 
 node_stmt
   = id:node_id attr:attr_list? {
+    var children = [];
+    if (id) {
+      children.push(id);
+    }
+    if (attr) {
+      children = children.concat(attr);
+    }
     return {
       type: 'nodeStatement',
-      id: id,
-      children: attr || [],
+      children: children,
       data: {},
       position: location()
     };
