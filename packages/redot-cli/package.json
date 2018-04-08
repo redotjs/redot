@@ -1,6 +1,6 @@
 {
   "name": "redot-cli",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "CLI to process Graphviz dot files with redot using plugins",
   "main": "redot-cli.js",
   "bin": {
@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/redotjs/redot#readme",
   "dependencies": {
-    "redot": "^0.3.0",
+    "redot": "^0.4.0",
     "unified-args": "^5.1.0"
   }
 }
