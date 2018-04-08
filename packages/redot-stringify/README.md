@@ -1,5 +1,6 @@
 # redot-stringify
 
+[![NPM Version](https://img.shields.io/npm/v/redot-stringify.svg)](https://www.npmjs.com/package/redot-stringify)
 [![Build Status](https://travis-ci.org/redotjs/redot.svg?branch=master)](https://travis-ci.org/redotjs/redot)
 [![Chat](https://img.shields.io/gitter/room/redotjs/Lobby.svg)](https://gitter.im/redotjs/Lobby)
 

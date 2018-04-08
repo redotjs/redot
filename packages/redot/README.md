@@ -1,5 +1,6 @@
 # redot
 
+[![NPM Version](https://img.shields.io/npm/v/redot.svg)](https://www.npmjs.com/package/redot)
 [![Build Status](https://travis-ci.org/redotjs/redot.svg?branch=master)](https://travis-ci.org/redotjs/redot)
 [![Chat](https://img.shields.io/gitter/room/redotjs/Lobby.svg)](https://gitter.im/redotjs/Lobby)
 
