@@ -1,12 +1,14 @@
 {
   "name": "redot-cli",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "CLI to process Graphviz dot files with redot using plugins",
   "main": "redot-cli.js",
   "bin": {
     "redot": "redot-cli.js"
   },
-  "files": ["redot-cli.js"],
+  "files": [
+    "redot-cli.js"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,7 +16,12 @@
     "type": "git",
     "url": "git+https://github.com/redotjs/redot.git"
   },
-  "keywords": ["graphviz", "dot", "redot", "cli"],
+  "keywords": [
+    "graphviz",
+    "dot",
+    "redot",
+    "cli"
+  ],
   "author": {
     "name": "Christian Murphy",
     "email": "Christian.Murphy.42@gmail.com",
@@ -26,7 +33,7 @@
   },
   "homepage": "https://github.com/redotjs/redot#readme",
   "dependencies": {
-    "redot": "^0.4.0",
+    "redot": "^0.4.1",
     "unified-args": "^5.1.0"
   }
 }

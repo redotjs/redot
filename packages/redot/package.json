@@ -1,9 +1,11 @@
 {
   "name": "redot",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Graphviz dot processor powered by plugins",
   "main": "redot.js",
-  "files": ["redot.js"],
+  "files": [
+    "redot.js"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -33,8 +35,8 @@
   },
   "homepage": "https://github.com/redotjs/redot#readme",
   "dependencies": {
-    "redot-parse": "^0.4.0",
-    "redot-stringify": "^0.4.0",
+    "redot-parse": "^0.4.1",
+    "redot-stringify": "^0.4.1",
     "unified": "^6.1.6"
   }
 }
