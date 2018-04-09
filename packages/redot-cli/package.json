@@ -6,9 +6,7 @@
   "bin": {
     "redot": "redot-cli.js"
   },
-  "files": [
-    "redot-cli.js"
-  ],
+  "files": ["redot-cli.js"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,13 +14,12 @@
     "type": "git",
     "url": "git+https://github.com/redotjs/redot.git"
   },
-  "keywords": [
-    "graphviz",
-    "dot",
-    "redot",
-    "cli"
-  ],
-  "author": "Christian Murphy",
+  "keywords": ["graphviz", "dot", "redot", "cli"],
+  "author": {
+    "name": "Christian Murphy",
+    "email": "Christian.Murphy.42@gmail.com",
+    "url": "https://github.com/ChristianMurphy"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/redotjs/redot/issues"

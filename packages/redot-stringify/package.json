@@ -3,9 +3,7 @@
   "version": "0.4.0",
   "description": "Graphviz dot compiler for redot",
   "main": "redot-stringify.js",
-  "files": [
-    "redot-stringify.js"
-  ],
+  "files": ["redot-stringify.js"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,7 +20,11 @@
     "ast",
     "stringify"
   ],
-  "author": "Christian Murphy",
+  "author": {
+    "name": "Christian Murphy",
+    "email": "Christian.Murphy.42@gmail.com",
+    "url": "https://github.com/ChristianMurphy"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/redotjs/redot/issues"
