@@ -5,10 +5,10 @@
  */
 
 start
-  = graph:graph+ {
+  = children:(graph / COMMENT)+ {
     return {
       type: 'root',
-      children: graph,
+      children: children,
       data: {},
       position: location()
     }
@@ -47,6 +47,7 @@ stmt
   / subgraph
   / node_stmt
   / ID '=' ID
+  / COMMENT
 
 attr_stmt
   = target:('graph'i/'node'i/'edge'i) attr:attr_list {
@@ -288,17 +289,38 @@ COMMENT "COMMENT"
  = (BLOCK_COMMENT / C_COMMENT / MACRO_COMMENT)
 
 BLOCK_COMMENT "BLOCK_COMMENT"
-  = '/*' v:(!'*/' v:. {return v;})* '*/' { return v.join('') }
+  = '/*' v:(!'*/' v:. {return v;})* '*/' {
+    return {
+      type: 'commentBlock',
+      value: v.join(''),
+      data: {},
+      position: location()
+    }
+  }
 
 C_COMMENT "C_COMMENT"
-  = '//' v:(![\n] v:. { return v; })* [\n]? { return v.join(''); }
+  = '//' v:(![\n] v:. { return v; })* [\n]? {
+    return {
+      type: 'commentInline',
+      value: v.join(''),
+      data: {},
+      position: location()
+    }
+  }
 
 MACRO_COMMENT "MACRO_COMMENT"
-  = '#' v:(![\n] v:. { return v; })* [\n]? { return v.join(''); }
+  = '#' v:(![\n] v:. { return v; })* [\n]? {
+    return {
+      type: 'commentMacro',
+      value: v.join(''),
+      data: {},
+      position: location()
+    }
+  }
 
 
 _ "WHITESPACE"
-  = (WHITESPACE / COMMENT)*
+  = WHITESPACE*
 
 NEWLINE
   = [\n\r]+
