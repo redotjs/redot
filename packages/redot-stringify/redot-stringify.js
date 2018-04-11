@@ -85,6 +85,9 @@ function graph(node) {
   result += " {\n";
 
   result += [
+    utilProcessChildType(node, commentMacro),
+    utilProcessChildType(node, commentBlock),
+    utilProcessChildType(node, commentInline),
     utilProcessChildType(node, attribute),
     utilProcessChildType(node, attributeStatement),
     utilProcessChildType(node, nodeStatement),
@@ -114,10 +117,30 @@ function subgraph(node) {
   return graph(node);
 }
 
+function commentBlock(node) {
+  return "/*" + node.value + "*/";
+}
+
+function commentInline(node) {
+  return "//" + node.value;
+}
+
+function commentMacro(node) {
+  return "#" + node.value;
+}
+
 function root(node) {
-  return (
-    utilProcessChildType(node, digraph) + utilProcessChildType(node, graph)
-  );
+  return [
+    utilProcessChildType(node, commentMacro),
+    utilProcessChildType(node, commentBlock),
+    utilProcessChildType(node, commentInline),
+    utilProcessChildType(node, digraph),
+    utilProcessChildType(node, graph)
+  ]
+    .filter(function(value) {
+      return value !== "";
+    })
+    .join("\n");
 }
 
 var compile = function compile(doc) {
