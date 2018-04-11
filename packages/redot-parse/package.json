@@ -1,6 +1,6 @@
 {
   "name": "redot-parse",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Graphviz dot parser for redot",
   "main": "redot-parse.js",
   "files": [

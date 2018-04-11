@@ -1,6 +1,6 @@
 {
   "name": "redot-stringify",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Graphviz dot compiler for redot",
   "main": "redot-stringify.js",
   "files": [
