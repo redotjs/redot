@@ -1,6 +1,6 @@
 {
   "name": "redot",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Graphviz dot processor powered by plugins",
   "main": "redot.js",
   "files": [
