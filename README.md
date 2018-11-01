@@ -1,4 +1,4 @@
-# ![Redot](logo.svg)
+# ![Redot](https://raw.githubusercontent.com/redotjs/redot/bb2a370/logo.svg?sanitize=true)
 
 [![Build Status](https://travis-ci.org/redotjs/redot.svg?branch=master)](https://travis-ci.org/redotjs/redot)
 [![Chat](https://img.shields.io/gitter/room/redotjs/Lobby.svg)](https://gitter.im/redotjs/Lobby)
@@ -9,8 +9,8 @@ and reformat graphviz too.
 
 It’s built on [unified](https://github.com/unifiedjs/unified), make sure to read it and its [website](https://unifiedjs.github.io) too.
 
-* [`redot`](https://github.com/redotjs/redot/tree/master/packages/redot) — Programmatic interface
-* [`redot-cli`](https://github.com/redotjs/redot/tree/master/packages/redot-cli) — Command-line interface
+- [`redot`](https://github.com/redotjs/redot/tree/master/packages/redot) — Programmatic interface
+- [`redot-cli`](https://github.com/redotjs/redot/tree/master/packages/redot-cli) — Command-line interface
 
 ## Contribute
 
