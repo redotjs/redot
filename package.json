@@ -13,7 +13,7 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "postinstall": "lerna bootstrap",
+    "postinstall": "lerna bootstrap --no-ci",
     "test": "npm-run-all lint-js lint-md",
     "lint-js": "eslint . --ignore-path=.gitignore",
     "lint-md": "remark *.md packages/*/*.md --ignore-path .gitignore"
