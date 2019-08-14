@@ -2,7 +2,7 @@ name: Build and test
 on: [push, pull_request]
 jobs:
   build-and-test:
-    name: '${{ matrix.platform }}: Node.js ${{ matrix.nodejs-version }}'
+    name: '${{ matrix.platform }}: node.js ${{ matrix.nodejs-version }}'
     strategy:
       matrix:
         nodejs-version: [6, 8, 10]
