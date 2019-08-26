@@ -34,6 +34,6 @@
   "homepage": "https://github.com/redotjs/redot#readme",
   "dependencies": {
     "redot": "^0.6.0",
-    "unified-args": "^6.0.0"
+    "unified-args": "^7.0.0"
   }
 }
