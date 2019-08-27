@@ -2,7 +2,7 @@
 
 [![Travis CI Status](https://travis-ci.org/redotjs/redot.svg?branch=master)](https://travis-ci.org/redotjs/redot)
 [![GitHub Actions Status](https://github.com/redotjs/redot/workflows/CI/badge.svg)](https://github.com/redotjs/redot/actions)
-[![Chat](https://img.shields.io/gitter/room/redotjs/Lobby.svg)](https://gitter.im/redotjs/Lobby)
+[![Chat](https://img.shields.io/badge/join%20the%20community-on%20spectrum-7b16ff.svg)](https://spectrum.chat/unified/redot)
 
 **redot** is an ecosystem of plugins for processing graphviz dot files.
 It’s not another graphviz compiler. It can generate
