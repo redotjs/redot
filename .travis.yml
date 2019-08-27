@@ -5,8 +5,6 @@ os:
   - osx
 node_js:
   # active LTS support
-  - 6
   - 8
   - 10
-  # latest release
-  - node
+  - 12
