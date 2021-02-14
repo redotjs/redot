@@ -1,4 +1,4 @@
-# ![Redot](https://raw.githubusercontent.com/redotjs/redot/bb2a370/logo.svg?sanitize=true)
+# ![Redot](https://raw.githubusercontent.com/redotjs/redot/aba51ee/logo.svg?sanitize=true)
 
 [![Travis CI Status](https://travis-ci.org/redotjs/redot.svg?branch=master)](https://travis-ci.org/redotjs/redot)
 [![GitHub Actions Status](https://github.com/redotjs/redot/workflows/CI/badge.svg)](https://github.com/redotjs/redot/actions)
