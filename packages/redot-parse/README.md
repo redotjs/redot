@@ -21,11 +21,11 @@ npm install redot-parse
 ```js
 var unified = require("unified");
 var createStream = require("unified-stream");
-var graphviz = require("redot-parse");
+var parse = require("redot-parse");
 var stringify = require("redot-stringify");
 
 var processor = unified()
-  .use(graphviz)
+  .use(parse)
   .use(stringify);
 
 process.stdin.pipe(createStream(processor)).pipe(process.stdout);

@@ -4,7 +4,6 @@
 # Visual Studio Code - https://code.visualstudio.com/
 .settings/
 .vscode/
-tsconfig.json
 jsconfig.json
 
 ### Linux ###
@@ -134,6 +133,7 @@ $RECYCLE.BIN/
 
 # End of https://www.gitignore.io/api/node,code,macos,linux,windows
 
-package-lock.json
 yarn.lock
-dot.js
+packages/**/package-lock.json
+**/*.js
+**/*.d.ts

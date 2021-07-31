@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         platform: [ubuntu-latest, windows-latest, macos-latest]
-        nodejs-version: [8, 10, 12]
+        nodejs-version: [16]
     runs-on: ${{ matrix.platform }}
     steps:
       - name: Checkout
@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           version: ${{ matrix.nodejs-version }}
-      - name: Build and test
-        run: |
-          npm install
-          npm test
+      - name: Install
+        run: npm ci
+      - name: Test
+        run: npm test
