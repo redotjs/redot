@@ -1,8 +1,8 @@
 # redot-cli
 
 [![NPM Version](https://img.shields.io/npm/v/redot-cli.svg)](https://www.npmjs.com/package/redot-cli)
-[![Build Status](https://travis-ci.org/redotjs/redot.svg?branch=master)](https://travis-ci.org/redotjs/redot)
-[![Chat](https://img.shields.io/gitter/room/redotjs/Lobby.svg)](https://gitter.im/redotjs/Lobby)
+[![Build Status](https://github.com/redotjs/redot/workflows/CI/badge.svg)](https://github.com/redotjs/redot/actions)
+[![Chat](https://img.shields.io/badge/chat-discussions-success.svg)](https://github.com/redotjs/redot/discussions)
 
 ## Installation
 
@@ -17,10 +17,10 @@ npm install redot-cli
 Command-line interface for [**redot**](https://github.com/redotjs/redot).
 
 * Loads `redot-` plugins
-* Ignores paths found in [`.redotignore` files](https://github.com/unifiedjs/unified-engine/blob/master/doc/ignore.md)
-* Loads configuration from [`.redot`, `.redot.js` files](https://github.com/unifiedjs/unified-engine/blob/master/doc/configure.md)
+* Ignores paths found in [`.redotignore` files](https://github.com/unifiedjs/unified-engine/blob/main/doc/ignore.md)
+* Loads configuration from [`.redot`, `.redot.js` files](https://github.com/unifiedjs/unified-engine/blob/main/doc/configure.md)
 * Uses configuration from [`redotConfig` fields in `package.json`
-  files](https://github.com/unifiedjs/unified-engine/blob/master/doc/configure.md)
+  files](https://github.com/unifiedjs/unified-engine/blob/main/doc/configure.md)
 
 ## Usage
 

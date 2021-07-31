@@ -1,8 +1,8 @@
 # redot-stringify
 
 [![NPM Version](https://img.shields.io/npm/v/redot-stringify.svg)](https://www.npmjs.com/package/redot-stringify)
-[![Build Status](https://travis-ci.org/redotjs/redot.svg?branch=master)](https://travis-ci.org/redotjs/redot)
-[![Chat](https://img.shields.io/gitter/room/redotjs/Lobby.svg)](https://gitter.im/redotjs/Lobby)
+[![Build Status](https://github.com/redotjs/redot/workflows/CI/badge.svg)](https://github.com/redotjs/redot/actions)
+[![Chat](https://img.shields.io/badge/chat-discussions-success.svg)](https://github.com/redotjs/redot/discussions)
 
 [Compiler](https://github.com/unifiedjs/unified#processorcompiler) for [**unified**](https://github.com/unifiedjs/unified). Stringifies an
 [**DOTAST**](https://github.com/redotjs/dotast) syntax tree to graphviz. Used in the [**redot**
