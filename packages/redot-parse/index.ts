@@ -1,5 +1,5 @@
 import { AST } from "@ts-graphviz/parser";
-import type { Processor } from "unified";
+import type { Processor, Plugin } from "unified";
 import type { VFile } from "vfile";
 
 /**
@@ -54,8 +54,9 @@ export function parse(doc: string, file?: VFile): DOTAST {
  *
  * @param this processor context
  */
-export function parserPlugin(this: Processor): void {
-  this.Parser = parse;
-}
+export const parserPlugin: Plugin<[], string, DOTAST> =
+  function parserPlugin() {
+    this.Parser = parse;
+  };
 
 export default parserPlugin;
