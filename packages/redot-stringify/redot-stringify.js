@@ -1,7 +1,7 @@
 "use strict";
 
 function utilQuotesAndEscaping(text) {
-  if (text.indexOf(" ") > 0) {
+  if (text.toString().indexOf(" ") > 0) {
     return '"' + text.replace('"', '\\"') + '"';
   }
 
