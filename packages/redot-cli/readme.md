@@ -16,10 +16,10 @@ npm install redot-cli
 
 Command-line interface for [**redot**](https://github.com/redotjs/redot).
 
-* Loads `redot-` plugins
-* Ignores paths found in [`.redotignore` files](https://github.com/unifiedjs/unified-engine/blob/main/doc/ignore.md)
-* Loads configuration from [`.redot`, `.redot.js` files](https://github.com/unifiedjs/unified-engine/blob/main/doc/configure.md)
-* Uses configuration from [`redotConfig` fields in `package.json`
+- Loads `redot-` plugins
+- Ignores paths found in [`.redotignore` files](https://github.com/unifiedjs/unified-engine/blob/main/doc/ignore.md)
+- Loads configuration from [`.redot`, `.redot.js` files](https://github.com/unifiedjs/unified-engine/blob/main/doc/configure.md)
+- Uses configuration from [`redotConfig` fields in `package.json`
   files](https://github.com/unifiedjs/unified-engine/blob/main/doc/configure.md)
 
 ## Usage

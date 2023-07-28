@@ -19,14 +19,12 @@ npm install redot-stringify
 ## Usage
 
 ```js
-var unified = require("unified");
-var createStream = require("unified-stream");
-var parse = require("redot-parse");
-var stringify = require("redot-stringify");
+var unified = require('unified')
+var createStream = require('unified-stream')
+var parse = require('redot-parse')
+var stringify = require('redot-stringify')
 
-var processor = unified()
-  .use(parse)
-  .use(stringify);
+var processor = unified().use(parse).use(stringify)
 
-process.stdin.pipe(createStream(processor)).pipe(process.stdout);
+process.stdin.pipe(createStream(processor)).pipe(process.stdout)
 ```

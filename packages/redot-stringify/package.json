@@ -2,17 +2,17 @@
   "name": "redot-stringify",
   "version": "0.5.0",
   "description": "Graphviz dot compiler for redot",
-  "main": "redot-stringify.js",
+  "type": "module",
+  "main": "index.js",
+  "types": "index.d.ts",
   "files": [
-    "redot-stringify.js"
+    "index.js",
+    "index.d.ts"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/redotjs/redot.git"
-  },
+  "repository": "redotjs/redot",
   "keywords": [
     "graphviz",
     "dot",
@@ -31,5 +31,9 @@
   "bugs": {
     "url": "https://github.com/redotjs/redot/issues"
   },
-  "homepage": "https://github.com/redotjs/redot#readme"
+  "homepage": "https://github.com/redotjs/redot#readme",
+  "dependencies": {
+    "ts-graphviz": "^1.0.0",
+    "unified": "^10.0.0"
+  }
 }
